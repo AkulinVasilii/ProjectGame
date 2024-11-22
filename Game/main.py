@@ -19,21 +19,21 @@ BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 
 #create class for saving information about players and record score
-class Save:
-    def __init__(self):
-        self.file = shelve.open('data')
-        self.file['name'] = ''
+#class Save:
+   # def __init__(self):
+      #  self.file = shelve.open('data')
+     #   self.file['name'] = ''
         
-    def add(self, name, value):
-        self.file[name] = value
+  #  def add(self, name, value):
+     #   self.file[name] = value
     
-    def get(self, name):
-        return self.file[name]
+   # def get(self, name):
+    #    return self.file[name]
     
-    def _del_(self):
-        self.file.close()
+   # def _del_(self):
+     #   self.file.close()
 
-save_data = Save()
+#save_data = Save()
 
 # function for adding text
 font_name = pygame.font.match_font('StarJedi Special Edition')
@@ -152,7 +152,7 @@ class Mob(pygame.sprite.Sprite):
 
 #showing start screen            
 def show_go_screen():
-    save_data.add('name', 'Guest')
+   # save_data.add('name', 'Guest')
     need_input = False
     input_text = '' 
     waiting = True
@@ -171,7 +171,7 @@ def show_go_screen():
             if need_input and event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     need_input = False
-                    save_data.add('name', input_text)
+                   # save_data.add('name', input_text)
                     input_text = ''
                 elif event.key == pygame.K_BACKSPACE:
                     input_text = input_text[:-1]
@@ -267,8 +267,8 @@ bullets = pygame.sprite.Group()
 enemybullets = pygame.sprite.Group()
 score = 0
 max_cur_score = 0
-max_score = save_data.get('max_score')
-print(max_score)
+#max_score = save_data.get('max_score')
+#print(max_score)
 pygame.mixer.music.play(loops=-1)
 
 # Main loop of game
@@ -316,8 +316,8 @@ while running:
         # checking if player beats the record score
         if max_score < score:
             max_score = score
-            save_data.add('best_player_name', save_data.get('name'))
-            save_data.add('max_score', max_score)
+            #save_data.add('best_player_name', save_data.get('name'))
+            #save_data.add('max_score', max_score)
             
         
         game_over = True
@@ -335,8 +335,8 @@ while running:
     all_sprites.draw(screen)
     draw_text(screen, "Score of current game: " + str(score), 20, 1*WIDTH / 4, 40)
     draw_text(screen, "Max score: " + str(max_score), 20, 3 * WIDTH / 4, 40)
-    draw_text(screen, "Name of current player: " + save_data.get('name'), 20, 1 * WIDTH / 4, 10)
-    draw_text(screen, "Name of best player: " + save_data.get('best_player_name'), 20, 3 * WIDTH / 4, 10)
+    #draw_text(screen, "Name of current player: " + save_data.get('name'), 20, 1 * WIDTH / 4, 10)
+   # draw_text(screen, "Name of best player: " + save_data.get('best_player_name'), 20, 3 * WIDTH / 4, 10)
     # flipping screen after drawing
     pygame.display.flip()
 
