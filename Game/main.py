@@ -90,7 +90,6 @@ def show_go_screen():
             if event.type == pygame.QUIT:
                 flag_game = False
                 waiting = False
-                pygame.quit()
                 return flag_game
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_RSHIFT:
@@ -203,3 +202,4 @@ while running:
             draw_text(screen, "Name of best player: " + ireader('best_player_name.txt'), 20, 3 * WIDTH / 4, 10)
 # flipping screen after drawing
         pygame.display.flip()
+pygame.quit()
