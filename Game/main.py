@@ -11,11 +11,6 @@ WIDTH = 600
 HEIGHT = 750
 FPS = 90
 
-# Imagine the colors
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-YELLOW = (255, 255, 0)
-
 # Start the game and creation of a screen
 pygame.init()
 pygame.mixer.init()
