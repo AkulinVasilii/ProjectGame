@@ -3,9 +3,8 @@ import os
 img_dir = os.path.join(os.path.dirname(__file__), 'graphics_forgame')
 snd_dir = os.path.join(os.path.dirname(__file__), 'sound_game')
 import pygame
-import random
 from bullet import *
-from player import *
+from player_and_mob import *
 from def_drawtext import draw_text
 from file_worker import *
 WIDTH = 600
@@ -29,7 +28,6 @@ pygame.display.set_caption("My Game")
 # loading sound effects
 # sound of shoot
 shoot_sound = pygame.mixer.Sound(os.path.join(snd_dir, 'laser_gun.wav'))
-an_shoot_sound = pygame.mixer.Sound(os.path.join(snd_dir, 'enemy_lr.wav'))
 # sounds of explosions
 expl_sounds = []
 for snd in ['space_expl1.wav', 'space_expl2.wav']:
@@ -49,31 +47,6 @@ background_rect = background.get_rect()
 player_img = pygame.image.load(os.path.join(img_dir, "x-wing.png")).convert()
 fighter_img = pygame.image.load(os.path.join(img_dir, "fighter of Empire.png")).convert()
 bullet_img = pygame.image.load(os.path.join(img_dir, "laserGreen.png")).convert()
-                      
-            
-# sprite of the comets and fighters
-class Mob(pygame.sprite.Sprite):
-    def __init__(self):
-        pygame.sprite.Sprite.__init__(self)
-        self.image = fighter_img
-        self.image.set_colorkey(BLACK)
-        self.image = pygame.transform.scale(fighter_img, (35, 35))
-        self.rect = self.image.get_rect()
-        self.radius = 15
-        # pygame.draw.circle(self.image, RED, self.rect.center, self.radius)
-        self.rect.x = random.randrange(WIDTH - self.rect.width)
-        self.rect.y = random.randrange(-100, -40)
-        self.speedy = random.randrange(1, 8)
-        self.speedx = random.randrange(-3, 3)
-        
-    def update(self):
-        self.rect.x += self.speedx
-        self.rect.y += self.speedy
-        if self.rect.top > HEIGHT + 10 or self.rect.left < -25 or self.rect.right > WIDTH + 20:
-            self.rect.x = random.randrange(WIDTH - self.rect.width)
-            self.rect.y = random.randrange(-100, -40)
-            self.speedy = random.randrange(1, 8)  
-            
 
 #showing start screen            
 def show_go_screen():
